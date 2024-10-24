@@ -1,0 +1,7 @@
+# Ignorar archivos de Node.js
+node_modules/
+.env
+
+#otros
+Nueva carpeta/
+models/mongoose/config/env.js
