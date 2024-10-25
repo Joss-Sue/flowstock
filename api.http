@@ -1,25 +1,28 @@
 ### Recuperar todas las películas
-GET http://localhost:1234/movies
+GET http://localhost:1234/categorias
 
 ### Recuperar una película por id
-GET http://localhost:1234/movies/671a6653b67e477ac7d7b13c
+GET http://localhost:1234/categorias/671b089f45311c0bf7e63fff
+
+### Borrado logico una película por id
+DELETE http://localhost:1234/categorias/671b089f45311c0bf7e63fff
 
 ### Recuperar todas las películas por un género
 GET http://localhost:1234/movies?genre=action
 
 ### Crear una película con POST
-POST http://localhost:1234/empresas
+POST http://localhost:1234/categorias
 Content-Type: application/json
 
 {
-  "nombre": "3TEST ENTERPRISE3",
-  "correo": "3test@test3"
+  "nombre": "Metales",
+  "descripcion": "Metales de todo tipo"
 }
 
 ### Actualizar una película
-PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+PATCH http://localhost:1234/categorias/671b089f45311c0bf7e63fff
 Content-Type: application/json
 
 {
-  "year": 2022
+  "nombre": "cajas2"
 }

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 import { uri } from './env.js'
 
-let isConnected // Variable para guardar el estado de la conexión
+let isConnected = false// Variable para guardar el estado de la conexión
 
 export const connectDB = async () => {
   if (isConnected) {

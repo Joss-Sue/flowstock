@@ -1,5 +1,6 @@
 import express, { json } from 'express' // require -> commonJS
 import { empresasRouter } from './routes/empresas-routes.js'
+import { categoriaRouter } from './routes/categorias-routes.js'
 // import { corsMiddleware } from './middleware/cors.js'
 
 const app = express()
@@ -8,6 +9,7 @@ app.use(json())
 app.disable('x-powered-by') // deshabilitar el header X-Powered-By: Express
 
 app.use('/empresas', empresasRouter)
+app.use('/categorias', categoriaRouter)
 
 const PORT = process.env.PORT ?? 1234
 
