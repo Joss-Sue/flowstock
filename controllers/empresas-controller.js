@@ -1,7 +1,7 @@
 // import { MovieModel } from '../models/local-file-system/movie.js'
 import { EmpresaModel } from '../models/mongoose/empresa-model.js'
 // import { MovieModel } from '../models/movie-model.js'
-import { validateEmpresa } from '../schemas/empresas.js'
+import { validateEmpresa } from './schemas/empresas.js'
 
 export class EmpresaController {
   static async getAll (req, res) {

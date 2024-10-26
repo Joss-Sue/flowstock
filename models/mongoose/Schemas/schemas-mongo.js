@@ -7,7 +7,7 @@ const empresaSchema = new mongoose.Schema({
   // Agrega otros campos que necesites en tu modelo
 })
 // Crear el modelo de película
-export const Empresa = mongoose.model('Empresas', empresaSchema)
+export const Empresas = mongoose.model('Empresas', empresaSchema)
 
 const categoriaSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
@@ -16,7 +16,7 @@ const categoriaSchema = new mongoose.Schema({
   estado: { type: Number, enum: [0, 1], default: 1 }
 })
 // Crear el modelo de categoría
-export const Categoria = mongoose.model('Categoria', categoriaSchema)
+export const Categorias = mongoose.model('Categorias', categoriaSchema)
 
 /* // Definir el esquema del proveedor
 const proveedorSchema = new mongoose.Schema({
@@ -26,11 +26,11 @@ const proveedorSchema = new mongoose.Schema({
   email: { type: String },
   direccion: { type: String },
   fecha_creacion: { type: Date, default: Date.now },
-  estado: { type: Number, default: 1 }
+  estado: { type: Number, enum: [0, 1], default: 1 }
 });
 
 // Crear el modelo de proveedor
-export const Proveedor = mongoose.model('Proveedor', proveedorSchema);
+export const Proveedores = mongoose.model('Proveedores', proveedorSchema);
 
 // Definir el esquema del producto
 const productoSchema = new mongoose.Schema({
@@ -43,7 +43,7 @@ const productoSchema = new mongoose.Schema({
 });
 
 // Crear el modelo de producto
-export const Producto = mongoose.model('Producto', productoSchema);
+export const Productos = mongoose.model('Productos', productoSchema);
 
 // Definir el esquema del pedido
 const pedidoSchema = new mongoose.Schema({
@@ -55,7 +55,7 @@ const pedidoSchema = new mongoose.Schema({
 });
 
 // Crear el modelo de pedido
-export const Pedido = mongoose.model('Pedido', pedidoSchema);
+export const Pedidos = mongoose.model('Pedidos', pedidoSchema);
 
 // Definir el esquema del usuario
 const usuarioSchema = new mongoose.Schema({
@@ -68,7 +68,7 @@ const usuarioSchema = new mongoose.Schema({
 });
 
 // Crear el modelo de usuario
-export const Usuario = mongoose.model('Usuario', usuarioSchema);
+export const Usuarios = mongoose.model('Usuarios', usuarioSchema);
 
 // Definir el esquema de entradas/salidas
 const entradaSalidaSchema = new mongoose.Schema({
@@ -81,7 +81,7 @@ const entradaSalidaSchema = new mongoose.Schema({
 });
 
 // Crear el modelo de entradas/salidas
-export const EntradaSalida = mongoose.model('EntradaSalida', entradaSalidaSchema);
+export const EntradasSalidas = mongoose.model('EntradasSalidas', entradaSalidaSchema);
 
 // Definir el esquema de relación entre pedidos y productos
 const pedidoProductoSchema = new mongoose.Schema({
@@ -91,4 +91,4 @@ const pedidoProductoSchema = new mongoose.Schema({
 }, { _id: false });
 
 // Crear el modelo de relación entre pedidos y productos
-export const PedidoProducto = mongoose.model('PedidoProducto', pedidoProductoSchema); */
+export const PedidosProductos = mongoose.model('PedidosProductos', pedidoProductoSchema); */

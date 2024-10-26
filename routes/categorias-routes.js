@@ -1,12 +1,12 @@
 import { Router } from 'express'
 
-import { CategoriaController } from '../controllers/categoria_controller.js'
+import { CategoriasController } from '../controllers/categorias-controller.js'
 
-export const categoriaRouter = Router()
+export const categoriasRouter = Router()
 
-categoriaRouter.get('/', CategoriaController.getAll)
-categoriaRouter.post('/', CategoriaController.create)
+categoriasRouter.get('/', CategoriasController.getAll)
+categoriasRouter.post('/', CategoriasController.create)
 
-categoriaRouter.get('/:id', CategoriaController.getById)
-categoriaRouter.delete('/:id', CategoriaController.delete)
-categoriaRouter.patch('/:id', CategoriaController.update)
+categoriasRouter.get('/:id', CategoriasController.getById)
+categoriasRouter.delete('/:id', CategoriasController.delete)
+categoriasRouter.patch('/:id', CategoriasController.update)

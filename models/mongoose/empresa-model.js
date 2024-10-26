@@ -1,11 +1,11 @@
-import { Empresa } from './Schemas/schema.js'
+import { Empresas } from './Schemas/schemas-mongo.js'
 import connectDB from './config/db.js'
 
 await connectDB()
 
 export class EmpresaModel {
   static async create ({ input }) {
-    const movie = new Empresa(input)
+    const movie = new Empresas(input)
     await movie.save()
     return movie
   }

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { EmpresaController } from '../controllers/empresa_controller.js'
+import { EmpresaController } from '../controllers/empresas-controller.js'
 
 export const empresasRouter = Router()
 

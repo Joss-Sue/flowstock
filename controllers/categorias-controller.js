@@ -1,15 +1,15 @@
-import { CategoriaModel } from '../models/mongoose/categoria-model.js'
-import { validate, validatePartial } from '../schemas/categorias.js'
+import { CategoriasModel } from '../models/mongoose/categorias-model.js'
+import { validate, validatePartial } from './schemas/categorias-validaciones.js'
 
-export class CategoriaController {
+export class CategoriasController {
   static async getAll (req, res) {
-    const empresas = await CategoriaModel.getAll()
+    const empresas = await CategoriasModel.getAll()
     res.json(empresas)
   }
 
   static async getById (req, res) {
     const { id } = req.params
-    const empresa = await CategoriaModel.getById({ id })
+    const empresa = await CategoriasModel.getById({ id })
     if (empresa) return res.json(empresa)
     res.status(404).json({ message: 'object not found' })
   }
@@ -22,7 +22,7 @@ export class CategoriaController {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
 
-    const newObject = await CategoriaModel.create({ input: result.data })
+    const newObject = await CategoriasModel.create({ input: result.data })
 
     res.status(201).json(newObject)
   }
@@ -30,7 +30,7 @@ export class CategoriaController {
   static async delete (req, res) {
     const { id } = req.params
 
-    const result = await CategoriaModel.delete({ id })
+    const result = await CategoriasModel.delete({ id })
 
     if (result === false) {
       return res.status(404).json({ message: 'Object not found' })
@@ -48,7 +48,7 @@ export class CategoriaController {
 
     const { id } = req.params
 
-    const updatedMovie = await CategoriaModel.update({ id, input: result.data })
+    const updatedMovie = await CategoriasModel.update({ id, input: result.data })
 
     return res.json(updatedMovie)
   }

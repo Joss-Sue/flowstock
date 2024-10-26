@@ -15,14 +15,14 @@ POST http://localhost:1234/categorias
 Content-Type: application/json
 
 {
-  "nombre": "Metales",
-  "descripcion": "Metales de todo tipo"
+  "nombre": "Telas avanzadas",
+  "descripcion": "telas de todo tipo avanzadas"
 }
 
 ### Actualizar una película
-PATCH http://localhost:1234/categorias/671b089f45311c0bf7e63fff
+PATCH http://localhost:1234/categorias/671c54be98cb67227de8975f
 Content-Type: application/json
 
 {
-  "nombre": "cajas2"
+  "descripcion": "TELAS"
 }
