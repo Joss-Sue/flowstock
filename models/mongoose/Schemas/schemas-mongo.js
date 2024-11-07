@@ -18,7 +18,7 @@ const categoriaSchema = new mongoose.Schema({
 // Crear el modelo de categoría
 export const Categorias = mongoose.model('Categorias', categoriaSchema)
 
-/* // Definir el esquema del proveedor
+ // Definir el esquema del proveedor
 const proveedorSchema = new mongoose.Schema({
   nombre: { type: String, required: true },
   contacto: { type: String },
@@ -91,4 +91,4 @@ const pedidoProductoSchema = new mongoose.Schema({
 }, { _id: false });
 
 // Crear el modelo de relación entre pedidos y productos
-export const PedidosProductos = mongoose.model('PedidosProductos', pedidoProductoSchema); */
+export const PedidosProductos = mongoose.model('PedidosProductos', pedidoProductoSchema); 
