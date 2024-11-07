@@ -11,18 +11,21 @@ DELETE http://localhost:1234/categorias/671b089f45311c0bf7e63fff
 GET http://localhost:1234/movies?genre=action
 
 ### Crear una película con POST
-POST http://localhost:1234/categorias
+POST http://localhost:1234/productos
 Content-Type: application/json
 
 {
-  "nombre": "Telas avanzadas",
-  "descripcion": "telas de todo tipo avanzadas"
+  "nombre": "libreta azul",
+  "descripcion": "este es el primer producto",
+  "stock": 10,
+  "categoria_id":"672d01d89ad2ddcdfed618bf",
+  "estado":"activo"
 }
 
 ### Actualizar una película
-PATCH http://localhost:1234/categorias/671c54be98cb67227de8975f
+PATCH http://localhost:1234/productos/672d05fede6bbbdceeb2ab94
 Content-Type: application/json
 
 {
-  "descripcion": "TELAS"
+  "descripcion": "producto editado"
 }

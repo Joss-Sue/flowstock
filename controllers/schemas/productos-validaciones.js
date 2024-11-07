@@ -16,7 +16,11 @@ const productoSchema = z.object({
   categoria_id: z.string({
     invalid_type_error: 'Categoria must be an id',
     required_error: 'Categoria is required.'
-  }).min(24)
+  }).min(24),
+  estado: z.string({
+    invalid_type_error: 'Estado must be an id',
+    required_error: 'Estado is required.'
+  }).min(1)
  
 })
 
