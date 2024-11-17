@@ -13,9 +13,9 @@ export class UsuariosModel {
   }
 
   static async create ({ input }) {
-    const movie = new Usuarios(input)
-    await movie.save()
-    return movie
+    const usuario = new Usuarios(input)
+    await usuario.save()
+    return usuario
   }
 
   static async delete ({ id }) {

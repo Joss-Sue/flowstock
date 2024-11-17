@@ -1,4 +1,5 @@
 import { ProveedoresModel } from '../models/mongoose/proveedores-model.js'
+
 import { validate, validatePartial } from './schemas/proveedores-validaciones.js'
 
 export class ProveedoresController {
@@ -27,16 +28,20 @@ export class ProveedoresController {
     res.status(201).json(newObject)
   }
 
-  static async delete (req, res) {
-    const { id } = req.params
-
-    const result = await ProveedoresModel.delete({ id })
-
+  static async delete(req, res) {
+    const { id } = req.params;
+  
+    const result = await ProveedoresModel.delete({ id });
+  
     if (result === false) {
-      return res.status(404).json({ message: 'Object not found' })
+      return res.status(404).json({ message: 'Object not found' });
     }
-
-    return res.json({ message: 'Object deleted' })
+  
+    if (result.success === false) {
+      return res.status(400).json({ message: result.message }); // Mensaje de error si hay pedidos pendientes
+    }
+  
+    return res.json({ message: 'Object deleted' });
   }
 
   static async update (req, res) {

@@ -34,11 +34,12 @@ export const Proveedores = mongoose.model('Proveedores', proveedorSchema);
 
 // Definir el esquema del producto
 const productoSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
+  //america: el nombre es unico pra que no se repita
+  nombre: { type: String, required: true, unique: true },
   descripcion: { type: String },
   stock: { type: Number, default: 0 },
-  categoria_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Categoria' },
-  estado: { type: String, enum: ['activo', 'inactivo', 'descontinuado', 'reemplazado'], required: true },
+  categoria_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Categoria', required:true},
+  estado: { type: String, enum: ['activo', 'inactivo', 'descontinuado', 'reemplazado'], default: 'activo' },
   fecha_creacion: { type: Date, default: Date.now }
 });
 
@@ -48,7 +49,7 @@ export const Productos = mongoose.model('Productos', productoSchema);
 // Definir el esquema del pedido
 const pedidoSchema = new mongoose.Schema({
   fecha_creacion: { type: Date, default: Date.now },
-  fecha_llegada_envio: { type: Date },
+  fecha_llegada_envio: { type: Date , required: true},
   estado: { type: String, enum: ['pendiente', 'completado', 'cancelado', 'enviado'], required: true },
   tipo_pedido: { type: String, enum: ['envio', 'llegada'], required: true },
   socio_empresa_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Proveedor' }
@@ -85,9 +86,11 @@ export const EntradasSalidas = mongoose.model('EntradasSalidas', entradaSalidaSc
 
 // Definir el esquema de relación entre pedidos y productos
 const pedidoProductoSchema = new mongoose.Schema({
-  pedido_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Pedido' },
-  producto_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Producto' },
-  cantidad: { type: Number, required: true }
+  pedido_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Pedidos' },
+  producto_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Productos' },
+  cantidad: { type: Number, required: true },
+  //america: estado para poder eliminar productos de un pedido
+  estado: { type: Number, default: 1 }
 }, { _id: false });
 
 // Crear el modelo de relación entre pedidos y productos

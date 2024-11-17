@@ -8,5 +8,11 @@ pedidosRouter.get('/', PedidosController.getAll)
 pedidosRouter.post('/', PedidosController.create)
 
 pedidosRouter.get('/:id', PedidosController.getById)
-pedidosRouter.delete('/:id', PedidosController.delete)
+pedidosRouter.get('/fecha', PedidosController.getByDateRange)
+
+
+//pedidosRouter.delete('/:id', PedidosController.delete)
 pedidosRouter.patch('/:id', PedidosController.update)
+// Cancelar un pedido
+pedidosRouter.put('/:pedidoId/cancelar', PedidosController.cancelarPedido);
+

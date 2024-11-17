@@ -7,6 +7,11 @@ export const productosRouter = Router()
 productosRouter.get('/', ProductosController.getAll)
 productosRouter.post('/', ProductosController.create)
 
+
 productosRouter.get('/:id', ProductosController.getById)
 productosRouter.delete('/:id', ProductosController.delete)
 productosRouter.patch('/:id', ProductosController.update)
+
+
+productosRouter.get('/nombre/:nombre', ProductosController.getByName)
+productosRouter.get('/categoria/:categoriaId', ProductosController.getByCategoria);

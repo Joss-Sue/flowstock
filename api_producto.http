@@ -1,0 +1,14 @@
+### Recuperar productos por nombre
+GET http://localhost:1234/productos/nombre/ejemplo
+
+### Recuperar por id
+GET http://localhost:1234/productos/6738db03821c5cbf7b62a1d2
+
+### Recuperar por categoria
+GET http://localhost:1234/productos/categoria/672d01d89ad2ddcdfed618bf
+
+### Borrado logico una película por id
+DELETE http://localhost:1234/productos/6738c0968d015b7d615f9d80
+
+### Actualizar/editar
+PATCH http://localhost:1234/productos/6738da60821c5cbf7b62a1cd

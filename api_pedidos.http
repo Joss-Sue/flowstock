@@ -1,0 +1,34 @@
+### Crear pedido con array de productos y valida si es envio
+
+POST http://localhost:1234/pedidos
+Content-Type: application/json
+
+{
+  "fecha_llegada_envio": "2024-11-18T12:00:00Z",
+  "estado": "pendiente",
+  "tipo_pedido": "llegada",
+  "socio_empresa_id": "673a070e8740b8f278ca2ba0",
+  "productos": [
+    {
+      "producto_id": "6738db03821c5cbf7b62a1d2",
+      "cantidad": 40
+    },
+    {
+      "producto_id": "6738da60821c5cbf7b62a1cd",
+      "cantidad": 40
+    }
+  ]
+}
+### Cancelar pedidos, ya con validaciones y stock actualizado 
+PUT http://localhost:1234/pedidos/673a139a019065ea49d2dbf3/cancelar
+
+### editar con validaciones para crear entradas y salidas
+PATCH  http://localhost:1234/pedidos/673a52e78a7afc4fae0ee6d1
+Content-Type: application/json
+
+{
+  "fecha_llegada_envio": "2024-12-20T12:00:00Z",
+  "estado": "completado",
+  "usuario_id": "673a524e8a7afc4fae0ee6c8"
+  
+}
