@@ -15,4 +15,5 @@ pedidosRouter.get('/fecha', PedidosController.getByDateRange)
 pedidosRouter.patch('/:id', PedidosController.update)
 // Cancelar un pedido
 pedidosRouter.put('/:pedidoId/cancelar', PedidosController.cancelarPedido);
+pedidosRouter.get('/reporte/filtros', PedidosController.getFiltered); // Nueva ruta para filtros
 

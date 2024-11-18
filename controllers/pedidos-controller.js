@@ -265,6 +265,60 @@ export class PedidosController {
         }
     }
 
+
+    static async getFiltered(req, res) {
+        const { estado, fechaInicio, fechaFin, proveedorId, productoId } = req.query;
+        
+        // Crear un filtro inicial
+        const filter = {};
+        
+        // Agregar filtro por estado si se proporciona
+        if (estado) {
+          filter.estado = estado; // Aquí se espera que el estado sea una cadena como 'pendiente', 'completado', etc.
+        }
+        
+        // Agregar filtro por fecha si se proporcionan
+        if (fechaInicio || fechaFin) {
+          filter.fecha_creacion = {};
+          if (fechaInicio) {
+            filter.fecha_creacion.$gte = new Date(fechaInicio);
+          }
+          if (fechaFin) {
+            filter.fecha_creacion.$lte = new Date(fechaFin);
+          }
+        }
+    
+        // Obtener los pedidos que coincidan con el filtro
+        try {
+          const pedidos = await PedidosModel.getFiltered(filter);
+    
+          // Si se proporciona un proveedorId, filtrar los pedidos por proveedor
+          if (proveedorId) {
+            const pedidosFiltradosPorProveedor = await PedidosProductos.find({ proveedor_id: proveedorId });
+            const pedidoIds = pedidosFiltradosPorProveedor.map(pp => pp.pedido_id);
+            return res.json(pedidos.filter(p => pedidoIds.includes(p._id.toString())));
+          }
+    
+          // Si se proporciona un productoId, filtrar los pedidos por producto
+          if (productoId) {
+            const pedidosFiltradosPorProducto = await PedidosProductos.find({ producto_id: productoId });
+            const pedidoIds = pedidosFiltradosPorProducto.map(pp => pp.pedido_id);
+            return res.json(pedidos.filter(p => pedidoIds.includes(p._id.toString())));
+          }
+    
+          // Incluir detalles de pedidos productos
+          const pedidosConDetalles = await Promise.all(pedidos.map(async (pedido) => {
+            const detalles = await PedidosProductos.find({ pedido_id: pedido._id });
+            return { ...pedido.toObject(), detalles };
+          }));
+    
+          return res.json(pedidosConDetalles);
+        } catch (error) {
+          console.error('Error al obtener pedidos filtrados:', error);
+          res.status(500).json({ message: 'Error interno del servidor' });
+        }
+      }
+
 }
 
 

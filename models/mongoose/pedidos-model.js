@@ -40,6 +40,11 @@ export class PedidosModel {
   static async getAll () {
     return await Pedidos.find({ estado: 1 })
   }
+
+  static async getFiltered(filter) {
+    return await Pedidos.find(filter);
+  }
+
   static async create({ input }) {
     const pedido = new Pedidos(input);
     return await pedido.save(); // Devuelve el pedido guardado

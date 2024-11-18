@@ -1,2 +1,6 @@
-### Recuperar por id
+### Recuperar entradas y salidas con filtro
 GET http://localhost:1234/salidas/filtro/tipo?tipo=entradas&fechaInicio=2023-01-01&fechaFin=2024-11-18
+
+
+###recuperar pedidos con filtro
+GET http://localhost:1234/pedidos/reporte/filtros?estado=enviado&fechaInicio=2024-01-01&fechaFin=2024-12-31
