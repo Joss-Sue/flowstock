@@ -4,8 +4,8 @@ import connectDB from './config/db.js'
 await connectDB()
 
 export class EntradasSalidasModel {
-  static async getAll () {
-    return await EntradasSalidas.find({ estado: 1 })
+  static async getAll(filter) {
+    return await EntradasSalidas.find(filter);
   }
 
   static async getById ({ id }) {

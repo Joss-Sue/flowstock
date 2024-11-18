@@ -1,0 +1,2 @@
+### Recuperar por id
+GET http://localhost:1234/salidas/filtro/tipo?tipo=entradas&fechaInicio=2023-01-01&fechaFin=2024-11-18
