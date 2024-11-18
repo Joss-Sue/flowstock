@@ -91,7 +91,7 @@ const pedidoProductoSchema = new mongoose.Schema({
   cantidad: { type: Number, required: true },
   //america: estado para poder eliminar productos de un pedido
   estado: { type: Number, default: 1 }
-}, { _id: false });
+});
 
 // Crear el modelo de relación entre pedidos y productos
 export const PedidosProductos = mongoose.model('PedidosProductos', pedidoProductoSchema); 

@@ -10,12 +10,12 @@ Content-Type: application/json
   "socio_empresa_id": "673a070e8740b8f278ca2ba0",
   "productos": [
     {
-      "producto_id": "6738db03821c5cbf7b62a1d2",
-      "cantidad": 40
+      "producto_id": "673954b58f59d5bc2bf1feb1",
+      "cantidad": 5
     },
     {
-      "producto_id": "6738da60821c5cbf7b62a1cd",
-      "cantidad": 40
+      "producto_id": "6739551d9f381e06122396e9",
+      "cantidad": 5
     }
   ]
 }
@@ -23,7 +23,7 @@ Content-Type: application/json
 PUT http://localhost:1234/pedidos/673a139a019065ea49d2dbf3/cancelar
 
 ### editar con validaciones para crear entradas y salidas
-PATCH  http://localhost:1234/pedidos/673a52e78a7afc4fae0ee6d1
+PATCH  http://localhost:1234/pedidos/673a591c9219504c91dcf653
 Content-Type: application/json
 
 {

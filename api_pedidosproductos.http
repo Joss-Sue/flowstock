@@ -1,0 +1,30 @@
+### Recuperar 
+GET http://localhost:1234/pedidosproductos
+
+### Recuperar por id de pedido
+GET http://localhost:1234/pedidosproductos/673b48330a71de6d4dd788b4
+
+### Recuperar por id de pedido y id 
+GET http://localhost:1234/pedidosproductos/673b56e7e791c64c35687c1c/673b56e7e791c64c35687c24
+
+###crear nuevo productopedido a un pedido existente solo si esta en estado pendiente
+POST http://localhost:1234/pedidosproductos
+Content-Type: application/json
+
+{
+  "pedido_id": "673a591c9219504c91dcf653",
+  "producto_id": "673943b7c5522aceee20caf2",
+  "cantidad": 1
+}
+
+
+### Borrado logico 
+DELETE http://localhost:1234/pedidosproductos/673b7db67ccc0d7bed4d57ff
+
+###crear nuevo productopedido a un pedido existente solo si esta en estado pendiente
+PATCH http://localhost:1234/pedidosproductos/673a0d437dcaef126498553a
+Content-Type: application/json
+
+{
+  "cantidad": 50
+}

@@ -7,6 +7,6 @@ export const pedidosproductosRouter = Router()
 pedidosproductosRouter.get('/', PedidosProductosController.getAll)
 pedidosproductosRouter.post('/', PedidosProductosController.create)
 
-pedidosproductosRouter.get('/:id', PedidosProductosController.getById)
+pedidosproductosRouter.get('/:pedidoId/:productoId', PedidosProductosController.getById);
 pedidosproductosRouter.delete('/:id', PedidosProductosController.delete)
 pedidosproductosRouter.patch('/:id', PedidosProductosController.update)
