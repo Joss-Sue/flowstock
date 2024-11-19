@@ -17,6 +17,8 @@ app.disable('x-powered-by')
 app.use(json())
 app.use(cookieParser())
 
+app.get('/', (req, res) => res.send('Api Hosteada Funcionando'))
+
 app.use('/public', publicRouter)
 
 app.use('/protected', verificarToken)
