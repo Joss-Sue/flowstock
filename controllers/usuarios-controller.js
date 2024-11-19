@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt'
 import { UsuariosModel } from '../models/mongoose/usuarios-model.js'
 import { validate, validatePartial } from './schemas/usuarios-validaciones.js'
 
@@ -15,16 +16,28 @@ export class UsuariosController {
   }
 
   static async create (req, res) {
-    const result = validate(req.body)
+    try {
+      const result = validate(req.body)
+      if (!result.success) {
+        return res.status(400).json({ error: JSON.parse(result.error.message) })
+      }
 
-    if (!result.success) {
-    // 422 Unprocessable Entity
-      return res.status(400).json({ error: JSON.parse(result.error.message) })
+      const contraEncriptada = await bcrypt.hash(req.body.password, 2)
+      const dataResult = { ...req.body, password: contraEncriptada }
+
+      // Intentar crear el usuario
+      const newObject = await UsuariosModel.create({ input: dataResult })
+
+      res.status(201).json(newObject)
+    } catch (error) {
+      // Manejo de errores de duplicados
+      if (error.code === 11000) { // Código de error de duplicados en MongoDB
+        return res.status(409).json({ error: 'El correo ya está en uso' })
+      }
+
+      console.error('Error al crear el usuario:', error)
+      res.status(500).json({ error: 'Error interno del servidor' })
     }
-
-    const newObject = await UsuariosModel.create({ input: result.data })
-
-    res.status(201).json(newObject)
   }
 
   static async delete (req, res) {
@@ -46,10 +59,31 @@ export class UsuariosController {
       return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
 
+    let dataResult = req.body
+
+    if (req.body.password) {
+      const contraEncriptada = await bcrypt.hash(req.body.password, 2)
+      dataResult = { ...req.body, password: contraEncriptada }
+    }
+
     const { id } = req.params
+    const updatedUsuario = await UsuariosModel.update({ id, input: dataResult })
+    return res.json(updatedUsuario)
+  }
 
-    const updatedMovie = await UsuariosModel.update({ id, input: result.data })
+  static async matchUsuario (req, res) {
+    // console.log(req.body)
+    // console.log(req.body.password)
 
-    return res.json(updatedMovie)
+    const usuario = await UsuariosModel.getOne(req.body.email)
+    if (!usuario) {
+      return res.status(403).json({ message: 'User not found' })
+    }
+
+    const passwordMatch = await bcrypt.compare(req.body.password, usuario.password)
+    if (!passwordMatch) {
+      return res.status(401).json({ success: false, message: 'Contraseña incorrecta' })
+    }
+    return res.json({ id: usuario._id, success: true })
   }
 }

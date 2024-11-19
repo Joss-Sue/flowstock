@@ -9,7 +9,7 @@ const usuarioSchema = z.object({
     invalid_type_error: 'Email must be a string',
     required_error: 'Email is required.'
   }).min(1),
-  contraseña: z.string({
+  password: z.string({
     invalid_type_error: 'Contraseña must be a string',
     required_error: 'Contraseña is required.'
   }).min(1),
@@ -17,7 +17,7 @@ const usuarioSchema = z.object({
     invalid_type_error: 'Tipo must be a string',
     required_error: 'Tipo is required.'
   }).min(1)
- 
+
 })
 
 export function validate (input) {

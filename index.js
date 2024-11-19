@@ -26,7 +26,6 @@ app.use('/usuarios', usuariosRouter)
 app.use('/salidas', salidasRouter)
 app.use('/pedidosproductos', pedidosproductosRouter)
 
-
 const PORT = process.env.PORT ?? 1234
 
 app.listen(PORT, () => {
