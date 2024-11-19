@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import { UsuariosModel } from '../models/mongoose/usuarios-model.js'
 import { validate, validatePartial } from './schemas/usuarios-validaciones.js'
+import { contraProtec } from '../models/mongoose/config/env.js'
 
 export class UsuariosController {
   static async getAll (req, res) {
@@ -84,6 +86,9 @@ export class UsuariosController {
     if (!passwordMatch) {
       return res.status(401).json({ success: false, message: 'Contraseña incorrecta' })
     }
-    return res.json({ id: usuario._id, success: true })
+    const token = jwt.sign({ id: usuario._id, nombre: usuario.nombre }, contraProtec, { expiresIn: '1h' })
+    return res
+      .cookie('acceso_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
+      .json({ id: usuario._id, token })
   }
 }
