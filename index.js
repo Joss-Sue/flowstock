@@ -15,6 +15,7 @@ import { publicRouter } from './routes/public-routes.js'
 const app = express()
 app.disable('x-powered-by')
 app.use(json())
+app.use(corsMiddleware())
 app.use(cookieParser())
 
 app.get('/', (req, res) => res.send('Api Hosteada Funcionando'))
