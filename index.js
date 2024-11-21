@@ -40,7 +40,7 @@ const corsMiddleware = cors({
 const app = express()
 app.disable('x-powered-by')
 app.use(corsMiddleware);
-app.use(json())
+pp.use(express.json({ limit: '10mb' }))
 //app.use(corsMiddleware())
 app.use(cookieParser())
 
