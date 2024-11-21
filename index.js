@@ -1,5 +1,7 @@
 import express, { json } from 'express' // require -> commonJS
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
+
 
 import { empresasRouter } from './routes/empresas-routes.js'
 import { categoriasRouter } from './routes/categorias-routes.js'
@@ -12,8 +14,32 @@ import { pedidosproductosRouter } from './routes/pedidosproductos-routes.js'
 import verificarToken from './middleware/token.js'
 import { publicRouter } from './routes/public-routes.js'
 
+const corsMiddleware = cors({
+  origin: (origin, callback) => {
+    const ACCEPTED_ORIGINS = [
+      'http://localhost:8080',
+      'http://localhost:1234',
+      'http://localhost:3000',
+      'https://movies.com',
+      'https://midu.dev'
+    ];
+
+    // Permitir solicitudes sin origen (por ejemplo, herramientas como Postman)
+    if (!origin || ACCEPTED_ORIGINS.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS no permitido para este origen'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  credentials: true // Si necesitas permitir cookies o credenciales
+});
+
+// Aplica el middleware globalmente
+
 const app = express()
 app.disable('x-powered-by')
+app.use(corsMiddleware);
 app.use(json())
 //app.use(corsMiddleware())
 app.use(cookieParser())
