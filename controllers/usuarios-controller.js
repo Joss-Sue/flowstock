@@ -86,9 +86,10 @@ export class UsuariosController {
     if (!passwordMatch) {
       return res.status(401).json({ success: false, message: 'Contraseña incorrecta' })
     }
-    const token = jwt.sign({ id: usuario._id, nombre: usuario.nombre }, contraProtec, { expiresIn: '1h' })
+    //const token = jwt.sign({ id: usuario._id, nombre: usuario.nombre }, contraProtec, { expiresIn: '1h' })
     return res
-      .cookie('acceso_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
-      .json({ id: usuario._id, token })
+      //.cookie('acceso_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 })
+      //.json({ id: usuario._id, token }) //
+      .json({ id: usuario._id })
   }
 }
