@@ -1,4 +1,4 @@
-import cors from 'cors'
+import cors from 'cors';
 
 export const corsMiddleware = () => cors({
   origin: (origin, callback) => {
@@ -6,21 +6,21 @@ export const corsMiddleware = () => cors({
       'http://localhost:8080',
       'http://localhost:1234',
       'https://movies.com',
-      'https://midu.dev',
-      'https://localhost:3000'
-    ]
+      'https://midu.dev'
+    ];
 
     if (ACCEPTED_ORIGINS.includes(origin)) {
-      return callback(null, true)
+      return callback(null, true);
     }
 
     if (!origin) {
-      return callback(null, true)
+      return callback(null, true);
     }
 
-    return callback(new Error('Not allowed by CORS'))
-  }
-})
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true, // Permitir el envío de cookies
+});
 
 // métodos normales: GET/HEAD/POST
 // métodos complejos: PUT/PATCH/DELETE
