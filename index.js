@@ -42,13 +42,13 @@ app.disable('x-powered-by')
 app.use(corsMiddleware);
 app.use(express.json({ limit: '10mb' }))
 //app.use(corsMiddleware())
-app.use(cookieParser())
+//app.use(cookieParser()) //se comenta para que no envie la cookie
 
 app.get('/', (req, res) => res.send('Api Hosteada Funcionando'))
 
 app.use('/public', publicRouter)
 
-app.use('/protected', verificarToken)
+//app.use('/protected', verificarToken)// se comenta para que no valide con token
 
 app.use('/protected/empresas', empresasRouter)
 app.use('/protected/categorias', categoriasRouter)
