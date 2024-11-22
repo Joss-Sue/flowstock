@@ -31,7 +31,7 @@ const corsMiddleware = cors({
       callback(new Error('CORS no permitido para este origen'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], // Métodos permitidos
   credentials: true // Si necesitas permitir cookies o credenciales
 });
 
